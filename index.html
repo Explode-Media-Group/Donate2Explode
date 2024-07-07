@@ -1,191 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic HTML Template</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        /* Header Styles */
-        .sticky-header {
-            position: -webkit-sticky;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-        }
-
-        }
-        .menu.show {
-            display: block;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 95%;
-            height: 95%;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(50px);
-            z-index: 999;
-            padding: 2rem;
-            border-radius: 10px;
-            overflow-y: auto;
-        }
-        .dark-mode .sticky-header {
-            background: rgba(17, 17, 17, 0.8);
-        }
-        .dark-mode .menu {
-            background: rgba(34, 34, 34, 0.9);
-        }
-        .menu-toggle {
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-        .menu-toggle:hover {
-            transform: rotate(90deg);
-        }
-        .dark-mode .menu-toggle {
-            color: #fff;
-        }
-        /* Toggle Switch Styles */
-        .toggle-switch {
-            display: inline-block;
-            width: 40px;
-            height: 20px;
-            position: relative;
-            cursor: pointer;
-        }
-        .toggle-switch input {
-            display: none;
-        }
-        .toggle-switch span {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: #bbb;
-            border-radius: 20px;
-            transition: background 0.3s;
-        }
-        .toggle-switch span:before {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: #fff;
-            top: 2px;
-            left: 2px;
-            transition: transform 0.3s;
-        }
-        .toggle-switch input:checked + span {
-            background: #4caf50;
-        }
-        .toggle-switch input:checked + span:before {
-            transform: translateX(20px);
-        }
-
-        .hero-video {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-video video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .hero-video .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Tinted overlay */
-        }
-        
-        .hero-video .container {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            color: #fff;
-        }
-
-    </style>
+    <title>HTMX Gallery with Glassmorphic UI</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="transition-colors duration-300">
-    <header class="sticky-header bg-white dark:bg-gray-900 text-black dark:text-white p-4 flex justify-between items-center">
-        <div class="logo text-2xl font-bold">Logo</div>
-        <nav>
-            <div class="menu-toggle lg:hidden" onclick="toggleMenu()">
-                &#9776;
+
+<body class="dark-mode">
+    <!-- Header -->
+    <header class="sticky-header bg-opacity-70 bg-white dark:bg-black">
+        <div class="container mx-auto flex items-center justify-between py-4">
+            <div class="logo">
+                <a href="#">
+                    <img src="logo.png" alt="Logo" class="h-8">
+                </a>
             </div>
-            <ul id="menu" class="menu lg:flex space-x-4 hidden">
-                <li><a href="hero.html" class="hover:underline" hx-get="hero.html" hx-target="#content" hx-trigger="click">Home</a></li>
-                <li><a href="about.html" class="hover:underline" hx-get="about.html" hx-target="#content" hx-trigger="click">About</a></li>
-                <li><a href="gallery.html" class="hover:underline" hx-get="gallery.html" hx-target="#content" hx-trigger="click">Gallery</a></li>
-                <li><a href="contact.html" class="hover:underline" hx-get="contact.html" hx-target="#content" hx-trigger="click">Contact</a></li>
-                <li>
-                    <div class="toggle-switch" onclick="toggleDarkMode()">
-                        <input type="checkbox" id="dark-mode-toggle">
-                        <span></span>
-                    </div>
-                </li>
-            </ul>
-        </nav>
+            <nav class="menu hidden md:flex">
+                <a href="#home" class="hover:underline">Home</a>
+                <a href="#about" class="hover:underline">About</a>
+                <a href="#gallery" class="hover:underline">Gallery</a>
+                <a href="#contact" class="hover:underline">Contact</a>
+            </nav>
+            <div class="md:hidden flex items-center">
+                <button class="menu-toggle">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
     </header>
 
-    <main id="content">
-        <section id="hero" class="hero py-20 text-center bg-gray-100 dark:bg-gray-900">
-            <h1 class="text-4xl font-bold mb-4">Welcome to Our Website</h1>
-            <p class="text-xl">This is a hero section.</p>
-        </section>
-    </main>
+    <!-- Mobile Menu -->
+    <div id="menu" class="menu-mobile hidden bg-opacity-90 bg-white dark:bg-black">
+        <div class="container mx-auto py-4">
+            <a href="#home" class="block py-2 hover:underline">Home</a>
+            <a href="#about" class="block py-2 hover:underline">About</a>
+            <a href="#gallery" class="block py-2 hover:underline">Gallery</a>
+            <a href="#contact" class="block py-2 hover:underline">Contact</a>
+        </div>
+    </div>
 
-    <footer class="bg-gray-800 text-white py-4">
-        <div class="container mx-auto px-4 flex justify-between items-center">
-            <div>&copy; 2024 Your Company</div>
-            <div class="space-x-4">
-                <a href="#privacy" class="hover:underline">Privacy</a>
-                <a href="#terms" class="hover:underline">Terms</a>
+    <!-- Hero Section -->
+    <section id="home" class="hero bg-cover bg-center relative">
+        <div class="overlay absolute top-0 left-0 w-full h-full bg-white bg-opacity-20 dark:bg-black dark:bg-opacity-30"></div>
+        <div class="container mx-auto relative z-10 flex items-center justify-center h-screen text-center text-white">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome to Our Gallery</h1>
+            <p class="text-lg md:text-2xl mb-6">Explore our collection of stunning images</p>
+            <a href="#gallery" class="bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark">View Gallery</a>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-10 bg-black dark:bg-white">
+        <div class="container mx-auto grid grid-cols-3 gap-4">
+            <div class="gallery-item">
+                <img src="image1.jpg" alt="Gallery Item 1" class="cursor-pointer"
+                    hx-get="image1.html" hx-trigger="click" hx-target="#modal .modal-content" hx-swap="innerHTML">
             </div>
-            <div class="space-x-4">
-                <a href="#"><img src="social-icon1.png" alt="Social Icon 1" class="w-6 inline"></a>
-                <a href="#"><img src="social-icon2.png" alt="Social Icon 2" class="w-6 inline"></a>
-                <a href="#"><img src="social-icon3.png" alt="Social Icon 3" class="w-6 inline"></a>
+            <div class="gallery-item">
+                <img src="image2.jpg" alt="Gallery Item 2" class="cursor-pointer"
+                    hx-get="image2.html" hx-trigger="click" hx-target="#modal .modal-content" hx-swap="innerHTML">
+            </div>
+            <!-- Repeat for other gallery items -->
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="modal" class="modal hidden fixed top-0 left-0 w-full h-full bg-opacity-90 bg-white dark:bg-black">
+        <button class="close-button text-2xl text-white absolute top-4 right-4"
+            onclick="document.getElementById('modal').classList.add('hidden')">×</button>
+        <div class="modal-content container mx-auto p-4 flex items-center justify-center h-full">
+            <!-- Content loaded dynamically -->
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-10 bg-black dark:bg-white">
+        <div class="container mx-auto text-center">
+            <h2 class="text-2xl md:text-4xl font-bold text-white dark:text-black mb-4">Contact Us</h2>
+            <form>
+                <div class="mb-4">
+                    <input type="text" placeholder="Your Name"
+                        class="block w-full px-3 py-2 bg-white dark:bg-gray-300 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                </div>
+                <div class="mb-4">
+                    <input type="email" placeholder="Your Email"
+                        class="block w-full px-3 py-2 bg-white dark:bg-gray-300 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                </div>
+                <div class="mb-4">
+                    <textarea placeholder="Your Message"
+                        class="block w-full px-3 py-2 bg-white dark:bg-gray-300 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"></textarea>
+                </div>
+                <button type="submit"
+                    class="bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark">Send</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-opacity-70 bg-white dark:bg-black">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="text-sm text-gray-600 dark:text-gray-400">&copy; 2024 Your Company. All rights reserved.</div>
+            <div class="flex space-x-4">
+                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <!-- Social icons (e.g., Facebook, Twitter) -->
+                    </svg>
+                </a>
+                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <!-- Social icons (e.g., Instagram, LinkedIn) -->
+                    </svg>
+                </a>
+            </div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">
+                <a href="#" class="hover:underline">Privacy Policy</a> | <a href="#"
+                    class="hover:underline">Terms of Use</a>
             </div>
         </div>
     </footer>
 
-    <div id="modal" class="modal flex items-center justify-center">
-        <div class="modal-content" hx-swap-oob="true">
-            <button class="close-button" onclick="closeModal()">×</button>
-        </div>
-    </div>
-
-    <script src="https://unpkg.com/htmx.org@2.0.0/dist/htmx.min.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.8.1/dist/htmx.min.js"></script>
     <script>
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            document.getElementById('dark-mode-toggle').checked = document.body.classList.contains('dark-mode');
-        }
+        // Toggle mobile menu
+        document.querySelector('.menu-toggle').addEventListener('click', function () {
+            document.getElementById('menu').classList.toggle('hidden');
+        });
 
-        function toggleMenu() {
-            document.getElementById('menu').classList.toggle('show');
-        }
-
+        // Close modal
         function closeModal() {
-            document.getElementById('modal').style.display = 'none';
+            document.getElementById('modal').classList.add('hidden');
         }
 
-        document.addEventListener('htmx:afterRequest', function(evt) {
-            if (evt.detail.target.id === 'modal') {
-                document.getElementById('modal').style.display = 'flex';
+        // HTMX event listener for modal content
+        document.addEventListener('htmx:afterSwap', function (event) {
+            if (event.detail.trigger.getAttribute('hx-target') === '#modal .modal-content') {
+                document.getElementById('modal').classList.remove('hidden');
             }
         });
     </script>
