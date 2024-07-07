@@ -20,7 +20,7 @@ Are you into retro tech, or want to experience some nastalga? Explore the 90s, 2
 
 🎧 Mine Nimiq for EXPLODE while listening to music.
 
-💡 We creating new Nimiq Mining activites soon!
+💡 We are creating new Nimiq Mining activites soon!
 
 # 🌏 REFERRALS 
 Do you like to discover new products and services? Follow one of our affiliate links.
