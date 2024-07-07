@@ -1,0 +1,224 @@
+<html><head><base href="https://websim.ai/abstract-art-gallery">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abstract Art Gallery - Immersive Experiences</title>
+<script src="https://unpkg.com/htmx.org@2.0.0-alpha1/dist/htmx.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+<style type="text/tailwindcss">
+@layer utilities {
+  .backdrop-blur-header {
+    backdrop-filter: blur(10px);
+  }
+  .backdrop-blur-modal {
+    backdrop-filter: blur(20px);
+  }
+}
+
+@keyframes floatAnimation {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.float {
+  animation: floatAnimation 6s ease-in-out infinite;
+}
+
+@keyframes pulseAnimation {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.pulse {
+  animation: pulseAnimation 4s ease-in-out infinite;
+}
+
+@keyframes rotateAnimation {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.rotate {
+  animation: rotateAnimation 20s linear infinite;
+}
+
+.abstract-bg {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+</style>
+</head>
+<body class="bg-gray-900 text-white">
+  <header class="fixed top-0 left-0 right-0 flex justify-between items-center p-4 bg-gray-900/80 backdrop-blur-header border-b border-white/20 z-50">
+    <div class="text-2xl font-bold relative overflow-hidden">
+      <span class="inline-block transform transition-all duration-500 hover:rotate-12 hover:scale-110">A</span>
+      <span class="inline-block transform transition-all duration-500 hover:-rotate-12 hover:scale-110">b</span>
+      <span class="inline-block transform transition-all duration-500 hover:rotate-12 hover:scale-110">s</span>
+      <span class="inline-block transform transition-all duration-500 hover:-rotate-12 hover:scale-110">t</span>
+      <span class="inline-block transform transition-all duration-500 hover:rotate-12 hover:scale-110">r</span>
+      <span class="inline-block transform transition-all duration-500 hover:-rotate-12 hover:scale-110">a</span>
+      <span class="inline-block transform transition-all duration-500 hover:rotate-12 hover:scale-110">c</span>
+      <span class="inline-block transform transition-all duration-500 hover:-rotate-12 hover:scale-110">t</span>
+    </div>
+    <nav class="hidden md:flex space-x-4">
+      <a href="#gallery" class="hover:text-purple-400 transition-colors duration-300">Gallery</a>
+      <a href="#about" class="hover:text-purple-400 transition-colors duration-300">About</a>
+      <a href="#contact" class="hover:text-purple-400 transition-colors duration-300">Contact</a>
+    </nav>
+    <button id="mobile-menu-button" class="md:hidden text-2xl" onclick="toggleMobileMenu()">☰</button>
+  </header>
+
+  <main>
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div class="abstract-bg fixed inset-0 opacity-10"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-purple-900 via-gray-900 to-blue-900 opacity-50"></div>
+      <div class="relative z-10 text-center px-4">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 float">Abstract Visions</h1>
+        <p class="text-xl md:text-2xl mb-8 pulse">Immerse yourself in a world of colors and shapes</p>
+        <a href="#gallery" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 inline-block">Explore Gallery</a>
+      </div>
+      <div class="absolute inset-0 pointer-events-none">
+        <svg class="absolute top-1/4 left-1/4 w-32 h-32 text-purple-500 opacity-50 rotate" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="8"/>
+        </svg>
+        <svg class="absolute bottom-1/4 right-1/4 w-24 h-24 text-blue-500 opacity-50 rotate" style="animation-direction: reverse;" viewBox="0 0 100 100">
+          <rect x="10" y="10" width="80" height="80" fill="none" stroke="currentColor" stroke-width="8"/>
+        </svg>
+      </div>
+    </section>
+
+    <section id="gallery" class="py-24">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-12 text-center">Featured Artworks</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+            <img src="https://picsum.photos/seed/abstract1/600/400" alt="Abstract artwork 1" class="w-full h-64 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">Cosmic Harmony</h3>
+              <p class="text-gray-400">A mesmerizing blend of celestial hues and geometric patterns.</p>
+            </div>
+          </div>
+          <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+            <img src="https://picsum.photos/seed/abstract2/600/400" alt="Abstract artwork 2" class="w-full h-64 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">Urban Rhythm</h3>
+              <p class="text-gray-400">Dynamic lines and bold colors capture the essence of city life.</p>
+            </div>
+          </div>
+          <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+            <img src="https://picsum.photos/seed/abstract3/600/400" alt="Abstract artwork 3" class="w-full h-64 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">Elemental Fusion</h3>
+              <p class="text-gray-400">A powerful interplay of earth, water, air, and fire elements.</p>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-12">
+          <a href="/gallery" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">View All Artworks</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="py-24 bg-gray-800">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-12 text-center">About Our Gallery</h2>
+        <div class="max-w-3xl mx-auto text-center">
+          <p class="text-lg mb-6">At Abstract Visions, we curate a diverse collection of abstract artworks that challenge perceptions and ignite imagination. Our gallery is a sanctuary for those who seek to explore the boundless realms of creativity.</p>
+          <p class="text-lg mb-6">We believe in the power of abstract art to evoke emotions, spark conversations, and transform spaces. Each piece in our collection is carefully selected to offer a unique perspective on the world around us.</p>
+          <a href="/about" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-24">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-12 text-center">Get in Touch</h2>
+        <div class="max-w-xl mx-auto">
+          <form action="/contact" method="POST" class="space-y-6">
+            <div>
+              <label for="name" class="block text-sm font-medium mb-2">Name</label>
+              <input type="text" id="name" name="name" required class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600">
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium mb-2">Email</label>
+              <input type="email" id="email" name="email" required class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600">
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium mb-2">Message</label>
+              <textarea id="message" name="message" rows="4" required class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"></textarea>
+            </div>
+            <div>
+              <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">Send Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gray-800 py-8">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-wrap justify-between items-center">
+        <div class="w-full md:w-1/3 text-center md:text-left mb-6 md:mb-0">
+          <h3 class="text-2xl font-bold mb-2">Abstract Visions</h3>
+          <p class="text-gray-400">Exploring the boundless realms of creativity</p>
+        </div>
+        <div class="w-full md:w-1/3 text-center mb-6 md:mb-0">
+          <h4 class="text-lg font-semibold mb-2">Quick Links</h4>
+          <nav class="space-x-4">
+            <a href="#gallery" class="text-gray-400 hover:text-white transition-colors duration-300">Gallery</a>
+            <a href="#about" class="text-gray-400 hover:text-white transition-colors duration-300">About</a>
+            <a href="#contact" class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a>
+          </nav>
+        </div>
+        <div class="w-full md:w-1/3 text-center md:text-right">
+          <h4 class="text-lg font-semibold mb-2">Follow Us</h4>
+          <div class="space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 text-center text-gray-400 text-sm">
+        &copy; 2023 Abstract Visions Gallery. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileMenu() {
+      const mobileMenu = document.createElement('div');
+      mobileMenu.id = 'mobile-menu';
+      mobileMenu.className = 'fixed inset-0 bg-gray-900/95 z-50 flex flex-col items-center justify-center';
+      mobileMenu.innerHTML = `
+        <button onclick="closeMobileMenu()" class="absolute top-4 right-4 text-2xl">&times;</button>
+        <nav class="text-center space-y-8">
+          <a href="#gallery" class="block text-3xl hover:text-purple-400 transition-colors duration-300">Gallery</a>
+          <a href="#about" class="block text-3xl hover:text-purple-400 transition-colors duration-300">About</a>
+          <a href="#contact" class="block text-3xl hover:text-purple-400 transition-colors duration-300">Contact</a>
+        </nav>
+      `;
+      document.body.appendChild(mobileMenu);
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (mobileMenu) {
+        mobileMenu.remove();
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        closeMobileMenu();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body></html>
