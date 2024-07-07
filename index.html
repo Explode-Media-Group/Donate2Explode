@@ -3,25 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Static HTML Template</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"/>
+    <title>Dynamic HTML Template</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        body {
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .hero {
-            padding: 4em 0;
-            text-align: center;
-        }
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1em;
-        }
-        .gallery img {
-            width: 100%;
-            cursor: pointer;
-        }
         .modal {
             display: none;
             position: fixed;
@@ -35,98 +19,49 @@
             text-align: center;
             padding: 2em;
         }
-        .modal img {
-            max-width: 80%;
-            margin-bottom: 1em;
-        }
-        .modal htmx-request {
-            display: none;
-        }
-        .modal htmx-target {
-            display: block;
-        }
-        .close-button {
-            position: absolute;
-            top: 1em;
-            right: 1em;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5em;
-            cursor: pointer;
-        }
         .dark-mode {
             background-color: #111;
             color: #fff;
         }
     </style>
 </head>
-<body>
-    <header>
+<body class="transition-colors duration-300">
+    <header class="bg-gray-800 text-white p-4 flex justify-between items-center">
         <nav>
-            <ul>
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <ul class="flex space-x-4">
+                <li><a href="hero.html" class="hover:underline" hx-get="hero.html" hx-target="#content" hx-trigger="click">Home</a></li>
+                <li><a href="about.html" class="hover:underline" hx-get="about.html" hx-target="#content" hx-trigger="click">About</a></li>
+                <li><a href="gallery.html" class="hover:underline" hx-get="gallery.html" hx-target="#content" hx-trigger="click">Gallery</a></li>
+                <li><a href="contact.html" class="hover:underline" hx-get="contact.html" hx-target="#content" hx-trigger="click">Contact</a></li>
             </ul>
-            <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
         </nav>
+        <button onclick="toggleDarkMode()" class="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded">Toggle Dark Mode</button>
     </header>
 
-    <section id="hero" class="hero">
-        <h1>Welcome to Our Website</h1>
-        <p>This is a hero section.</p>
-    </section>
+    <main id="content">
+        <section id="hero" class="hero py-20 text-center bg-gray-100 dark:bg-gray-900">
+            <h1 class="text-4xl font-bold mb-4">Welcome to Our Website</h1>
+            <p class="text-xl">This is a hero section.</p>
+        </section>
+    </main>
 
-    <section id="about">
-        <h2>About Us</h2>
-        <p>Information about the company.</p>
-    </section>
-
-    <section id="gallery">
-        <h2>Gallery</h2>
-        <div class="gallery">
-            <img src="image1.jpg" alt="Gallery Item 1" hx-get="image1.html" hx-trigger="click" hx-target="#modal">
-            <img src="image2.jpg" alt="Gallery Item 2" hx-get="image2.html" hx-trigger="click" hx-target="#modal">
-            <img src="image3.jpg" alt="Gallery Item 3" hx-get="image3.html" hx-trigger="click" hx-target="#modal">
-            <img src="image4.jpg" alt="Gallery Item 4" hx-get="image4.html" hx-trigger="click" hx-target="#modal">
-            <img src="image5.jpg" alt="Gallery Item 5" hx-get="image5.html" hx-trigger="click" hx-target="#modal">
-            <img src="image6.jpg" alt="Gallery Item 6" hx-get="image6.html" hx-trigger="click" hx-target="#modal">
-            <img src="image7.jpg" alt="Gallery Item 7" hx-get="image7.html" hx-trigger="click" hx-target="#modal">
-            <img src="image8.jpg" alt="Gallery Item 8" hx-get="image8.html" hx-trigger="click" hx-target="#modal">
-            <img src="image9.jpg" alt="Gallery Item 9" hx-get="image9.html" hx-trigger="click" hx-target="#modal">
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <form>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
-            <button type="submit">Submit</button>
-        </form>
-    </section>
-
-    <footer>
-        <div>&copy; 2024 Your Company</div>
-        <div>
-            <a href="#privacy">Privacy</a>
-            <a href="#terms">Terms</a>
-        </div>
-        <div>
-            <a href="#"><img src="social-icon1.png" alt="Social Icon 1"></a>
-            <a href="#"><img src="social-icon2.png" alt="Social Icon 2"></a>
-            <a href="#"><img src="social-icon3.png" alt="Social Icon 3"></a>
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div>&copy; 2024 Your Company</div>
+            <div class="space-x-4">
+                <a href="#privacy" class="hover:underline">Privacy</a>
+                <a href="#terms" class="hover:underline">Terms</a>
+            </div>
+            <div class="space-x-4">
+                <a href="#"><img src="social-icon1.png" alt="Social Icon 1" class="w-6 inline"></a>
+                <a href="#"><img src="social-icon2.png" alt="Social Icon 2" class="w-6 inline"></a>
+                <a href="#"><img src="social-icon3.png" alt="Social Icon 3" class="w-6 inline"></a>
+            </div>
         </div>
     </footer>
 
-    <div id="modal" class="modal" hx-swap-oob="true">
-        <button class="close-button" onclick="closeModal()">×</button>
+    <div id="modal" class="modal flex items-center justify-center">
+        <button class="close-button text-white text-2xl" onclick="closeModal()">×</button>
         <div hx-swap-oob="true"></div>
     </div>
 
