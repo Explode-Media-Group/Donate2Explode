@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static HTML Template</title>
+    <link rel="stylesheet" href="https://unpkg.com/picocss@1.5.4/dist/pico.min.css">
+    <style>
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .hero {
+            padding: 4em 0;
+            text-align: center;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1em;
+        }
+        .gallery img {
+            width: 100%;
+            cursor: pointer;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2em;
+        }
+        .modal img {
+            max-width: 80%;
+            margin-bottom: 1em;
+        }
+        .modal htmx-request {
+            display: none;
+        }
+        .modal htmx-target {
+            display: block;
+        }
+        .close-button {
+            position: absolute;
+            top: 1em;
+            right: 1em;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .dark-mode {
+            background-color: #111;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+        </nav>
+    </header>
+
+    <section id="hero" class="hero">
+        <h1>Welcome to Our Website</h1>
+        <p>This is a hero section.</p>
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Information about the company.</p>
+    </section>
+
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery">
+            <img src="image1.jpg" alt="Gallery Item 1" hx-get="image1.html" hx-trigger="click" hx-target="#modal">
+            <img src="image2.jpg" alt="Gallery Item 2" hx-get="image2.html" hx-trigger="click" hx-target="#modal">
+            <img src="image3.jpg" alt="Gallery Item 3" hx-get="image3.html" hx-trigger="click" hx-target="#modal">
+            <img src="image4.jpg" alt="Gallery Item 4" hx-get="image4.html" hx-trigger="click" hx-target="#modal">
+            <img src="image5.jpg" alt="Gallery Item 5" hx-get="image5.html" hx-trigger="click" hx-target="#modal">
+            <img src="image6.jpg" alt="Gallery Item 6" hx-get="image6.html" hx-trigger="click" hx-target="#modal">
+            <img src="image7.jpg" alt="Gallery Item 7" hx-get="image7.html" hx-trigger="click" hx-target="#modal">
+            <img src="image8.jpg" alt="Gallery Item 8" hx-get="image8.html" hx-trigger="click" hx-target="#modal">
+            <img src="image9.jpg" alt="Gallery Item 9" hx-get="image9.html" hx-trigger="click" hx-target="#modal">
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <footer>
+        <div>&copy; 2024 Your Company</div>
+        <div>
+            <a href="#privacy">Privacy</a>
+            <a href="#terms">Terms</a>
+        </div>
+        <div>
+            <a href="#"><img src="social-icon1.png" alt="Social Icon 1"></a>
+            <a href="#"><img src="social-icon2.png" alt="Social Icon 2"></a>
+            <a href="#"><img src="social-icon3.png" alt="Social Icon 3"></a>
+        </div>
+    </footer>
+
+    <div id="modal" class="modal" hx-swap-oob="true">
+        <button class="close-button" onclick="closeModal()">×</button>
+        <div hx-swap-oob="true"></div>
+    </div>
+
+    <script src="https://unpkg.com/htmx.org@2.0.0/dist/htmx.min.js" defer async></script>
+    <script defer async>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        document.addEventListener('htmx:afterRequest', function(evt) {
+            if (evt.detail.target.id === 'modal') {
+                document.getElementById('modal').style.display = 'flex';
+            }
+        });
+    </script>
+</body>
+</html>
