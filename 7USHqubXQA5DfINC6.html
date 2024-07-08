@@ -82,14 +82,14 @@
       </div>
     </section>
 
-    <section id="gallery" class="py-24">
+    <section id="gallery" class="py-24" id="content">
       <div class="container mx-auto px-4">
         <h2 class="text-4xl font-bold mb-12 text-center">PICK A WAY TO DONATE</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300" data-href="/donate">
-            <a href="/donate"><img src="https://picsum.photos/seed/abstract1/600/400" alt="Abstract artwork 1" class="w-full h-64 object-cover"></a>
+            <a href="/donate" hx-get="/donate" hx-target="#content" hx-trigger="click"><img src="https://picsum.photos/seed/abstract1/600/400" alt="Abstract artwork 1" class="w-full h-64 object-cover"></a>
             <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2"><a href="/donate">Donate Money</a></h3>
+              <h3 class="text-xl font-semibold mb-2"><a href="/donate" hx-get="/donate" hx-target="#content" hx-trigger="click">Donate Money</a></h3>
               <p class="text-gray-400">Donate money, like the US Dollar, EURO, etc.</p>
             </div>
           </div>
@@ -180,7 +180,8 @@
       </div>
     </div>
   </footer>
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web-socket-js/1.0.0/web_socket.min.js" integrity="sha512-jtr9/t8rtBf1Sv832XjG1kAtUECQCqFnTAJWccL8CSC82VGzkPPih8rjtOfiiRKgqLXpLA1H/uQ/nq2bkHGWTQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://unpkg.com/htmx.org@2.0.0/dist/htmx.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
   <script>
