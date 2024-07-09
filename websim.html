@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glassmorphic Dark UI with HTMX and Tailwind</title>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.0/dist/htmx.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Glassmorphic effect */
+        .glassmorphic {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+    <!-- Sticky Header -->
+    <header class="sticky top-0 z-50 bg-gray-800 glassmorphic p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Websim Viewer - EXPLODE</h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="#" hx-get="home.html" hx-target="#main-content" class="hover:text-gray-400">Home</a></li>
+                    <li><a href="#" hx-get="https://websim.ai/c/uQkFQI3zGkteqqLww" hx-target="#main-content" class="hover:text-gray-400">Cards Dice Game</a></li>
+                    <li><a href="#" hx-get="contact.html" hx-target="#main-content" class="hover:text-gray-400">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" class="flex-grow container mx-auto p-4">
+        <h2 class="text-3xl font-bold mb-4">Welcome to My Website</h2>
+        <p>This is a sample page with a glassmorphic dark UI, built using HTMX and Tailwind CSS.</p>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 glassmorphic p-4 text-center">
+        <p>&copy; 2024 My Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>
