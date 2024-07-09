@@ -6,8 +6,9 @@ You can donate money to EXPLODE, USD, Euro, and many more.
 
 # 👛 CRYPTO 
 We also accept donations in cryptocurrencies.
+[![Donate NIM](https://www.nimiq.com/accept-donations/img/donationBtnImg/orange-small.svg)](https://wallet.nimiq.com/nimiq:NQ64X4S4RL324A246LLCRUHDAHFVG3Y2T8TT)
 
-# ⛏️ MINING    [![Donate NIM](https://www.nimiq.com/accept-donations/img/donationBtnImg/orange-big.svg)](https://wallet.nimiq.com/nimiq:NQ64X4S4RL324A246LLCRUHDAHFVG3Y2T8TT)
+# ⛏️ MINING
 We have entertaining ways for you to help support us, and this is is different. 
 
 Like to watch old movies? Watch them while mining Nimiq for EXPLODE! 
