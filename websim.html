@@ -23,6 +23,64 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
+        .nim {
+              margin: 20px;
+              width: 100px;
+              height: 100px;
+              -webkit-animation-name: spin;
+              -webkit-animation-duration: 2000ms;
+              -webkit-animation-iteration-count: infinite;
+              -webkit-animation-timing-function: linear;
+              -moz-animation-name: spin;
+              -moz-animation-duration: 2000ms;
+              -moz-animation-iteration-count: infinite;
+              -moz-animation-timing-function: linear;
+              -ms-animation-name: spin;
+              -ms-animation-duration: 2000ms;
+              -ms-animation-iteration-count: infinite;
+              -ms-animation-timing-function: linear;
+              animation-name: spin;
+              animation-duration: 2000ms;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+            }
+            
+            @-ms-keyframes spin {
+              from {
+                -ms-transform: rotate(0deg);
+              }
+              to {
+                -ms-transform: rotate(360deg);
+              }
+            }
+            
+            @-moz-keyframes spin {
+              from {
+                -moz-transform: rotate(0deg);
+              }
+              to {
+                -moz-transform: rotate(360deg);
+              }
+            }
+            
+            @-webkit-keyframes spin {
+              from {
+                -webkit-transform: rotate(0deg);
+              }
+              to {
+                -webkit-transform: rotate(360deg);
+              }
+            }
+            
+            @keyframes spin {
+              from {
+                transform: rotate(0deg);
+              }
+              to {
+                transform: rotate(360deg);
+              }
+            }
     </style>
 </head>
 <body class="bg-gray-900 text-white min-h-screen flex flex-col">
@@ -49,7 +107,7 @@
     <div id="webminer-addon"></div>
     <section class="bg-gray-800 glassmorphic p-8">
         <div class="container mx-auto text-center">
-            <h2 class="text-4xl font-bold mb-4"><a href="#" class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">MINING ENABLED ✔</a></h2>
+            <h2 class="text-4xl font-bold mb-4"><a href="#" class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">MINING ENABLED <div id="nim"><img src="nim.svg" width="5%" height="5%"></div></a></h2>
         </div>
     </section>
     <footer class="bg-gray-800 glassmorphic p-4 text-center">
