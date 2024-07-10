@@ -15,7 +15,7 @@
         let MINER_THREADS = 1
     </script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
+       <style>
         /* Glassmorphic effect */
         .glassmorphic {
             backdrop-filter: blur(10px);
@@ -43,6 +43,11 @@
                 -webkit-animation: nim 4s linear infinite;
             }
          </style>
+         <style>
+             .cont {
+                      display: flex;
+                   }
+         </style>
 </head>
 <body class="bg-gray-900 text-white min-h-screen flex flex-col">
     <header class="sticky top-0 z-50 bg-gray-800 glassmorphic p-4">
@@ -63,11 +68,11 @@
         <p>This is a sample page with a glassmorphic dark UI, built using HTMX and Tailwind CSS.</p>
     </main>
     <section class="bg-gray-800 glassmorphic p-8">
-        <div class="container mx-auto text-center">
+        <div class="cont mx-auto text-center">
             <noscript>
                <strong>We're sorry but Explode WebMiner doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
             </noscript>
-            <div class="nim"><img src="nim.svg"></div></h2>
+            <div class="nim"><img src="nim.svg"></div><div class="mine text-sm font-sans antialiased text-left text-red-500"> You have the <a href="#" hx-get="/subscription" hx-target="cont" hx-swap="innerHTML">freemium subscription</a>, thank for mining <a href="https://nimiq.com" target="_blank">Nimiq</a>!</div>
         </div>
     </section>
     <footer class="bg-gray-800 glassmorphic p-4 text-center">
